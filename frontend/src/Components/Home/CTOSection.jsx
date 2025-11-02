@@ -100,7 +100,7 @@ function CTOSection() {
 
               <button
                 type="submit"
-                onClick={axios.post('http://localhost:5000/api/meetings/process',
+                onClick={axios.post(`${process.env.REQ_API_URL}/meetings/process`,
                   { meetingId: meeting }
                 )}
                 className="bg-gradient-to-r from-pink-500 to-pink-400 text-white py-2 

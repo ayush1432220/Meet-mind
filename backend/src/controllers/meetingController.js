@@ -12,6 +12,7 @@ export const processMeeting = async (req, res) => {
     console.log(startTime)
 
     // 1️⃣ Fetch Zoom recording
+    // const audioPath = await fetchZoomRecording(meetingId);
     const audioPath = await fetchZoomRecording(meetingId);
     
     console.log("✅ Recording fetched:", audioPath);

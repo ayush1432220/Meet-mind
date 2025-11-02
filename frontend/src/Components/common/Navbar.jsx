@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import logo from "../../assets/logo.png";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // ✅ Rename this array to something else, like navLinks
+  // Navigation links
   const navLinks = [
     { name: "Home", to: "/" },
     { name: "Features", to: "/features" },
@@ -19,52 +18,51 @@ function Navbar() {
       <nav className="relative w-full bg-[#ffff] shadow-[inset_1px_1px_4px_#d1d9e6,inset_-1px_-1px_4px_#ffffff] backdrop-blur-md">
         <div className="flex items-center justify-between max-w-screen-xl mx-auto px-6 py-3">
           {/* Logo */}
-         <div className="flex items-center space-x-3 cursor-pointer">
-  <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#f5f6fa] shadow-[4px_4px_10px_#d1d9e6,-4px_-4px_10px_#ffffff] overflow-hidden">
-    <img
-      src={logo}
-      alt="Meetmind AI Logo"
-      className="h-10 w-10 object-contain"
-    />
-  </div>
-  <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 font-semibold text-lg">
-    Meetmind AI
-  </span>
-</div>
-
+          <div className="flex items-center space-x-3 cursor-pointer">
+            <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-[#f5f6fa] shadow-[4px_4px_10px_#d1d9e6,-4px_-4px_10px_#ffffff] overflow-hidden">
+              <img
+                src={logo}
+                alt="Meetmind AI Logo"
+                className="h-10 w-10 object-contain"
+              />
+            </div>
+            <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 font-semibold text-lg">
+              Meetmind AI
+            </span>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-           {navLinks.map((link) => (
-  <Link
-    key={link.name}
-    to={link.to}
-    className={`relative text-[15px] font-medium transition-all duration-300 ease-in-out transform 
-      ${
-        link.name === "Home"
-          ? "text-blue-600 font-semibold scale-105"
-          : "text-gray-600 hover:text-blue-600 hover:scale-105"
-      } 
-      active:scale-95 active:text-blue-700`}
-  >
-    {link.name}
-    {/* Add subtle underline animation */}
-    <span className="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
-  </Link>
-))}
-
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.to}
+                className={`relative text-[15px] font-medium transition-all duration-300 ease-in-out transform 
+                  ${
+                    link.name === "Home"
+                      ? "text-blue-600 font-semibold scale-105"
+                      : "text-gray-600 hover:text-blue-600 hover:scale-105"
+                  } 
+                  active:scale-95 active:text-blue-700`}
+              >
+                {link.name}
+                <span className="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            ))}
           </div>
 
           {/* Desktop Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button
+            {/* ✅ Sign in button navigates to /login */}
+            <Link
+              to="/login"
               className="py-2.5 px-6 rounded-full font-semibold text-gray-700 
               bg-[#f5f6fa] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff]
               hover:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff]
               active:scale-95 transition-all duration-300 ease-in-out"
             >
               Sign in
-            </button>
+            </Link>
 
             <button
               className="py-2.5 px-6 rounded-full font-semibold text-white 
@@ -124,14 +122,18 @@ function Navbar() {
             ))}
 
             <div className="flex flex-col space-y-3 w-[80%] pt-3 border-t border-gray-300">
-              <button
+              {/* ✅ Mobile Sign in link */}
+              <Link
+                to="/login"
+                onClick={() => setIsOpen(false)}
                 className="py-2.5 px-5 rounded-xl font-semibold text-gray-700 bg-[#f5f6fa]
                 shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff]
                 hover:shadow-[inset_3px_3px_6px_#d1d9e6,inset_-3px_-3px_6px_#ffffff]
-                transition-all duration-300"
+                transition-all duration-300 text-center"
               >
                 Sign in
-              </button>
+              </Link>
+
               <button
                 className="py-2.5 px-5 rounded-xl font-semibold text-white bg-gradient-to-br from-blue-500 to-blue-700
                 shadow-[4px_4px_12px_#c8d0e7,-4px_-4px_12px_#ffffff]
